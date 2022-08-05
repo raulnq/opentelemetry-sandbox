@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimeQuoteApi", "animequote
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FF069D88-447E-41C7-8360-DAE59E6D28DD}"
 	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+		otel-collector-config.yaml = otel-collector-config.yaml
 		prometheus.yml = prometheus.yml
 	EndProjectSection
 EndProject

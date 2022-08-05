@@ -20,7 +20,7 @@ builder.Services.AddHttpClient<QuoteClient>(client=>
 builder.Services.AddOpenTelemetryTracing(builder =>
 {
     builder
-    .AddJaegerExporter()
+    .AddOtlpExporter()
     .AddSource("AnimeQuoteApi")
     .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("AnimeQuoteApi"))
     .AddHttpClientInstrumentation()
@@ -36,12 +36,7 @@ builder.Services.AddOpenTelemetryMetrics(builder =>
     .AddAspNetCoreInstrumentation()
     .AddHttpClientInstrumentation()
     .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("AnimeQuoteApi"))
-    .AddPrometheusExporter(options =>
-    {
-        options.StartHttpListener = true;
-        options.HttpListenerPrefixes = new string[] {  "http://127.0.0.1:9464/" };
-        options.ScrapeResponseCacheDurationMilliseconds = 0;
-    });
+    .AddOtlpExporter();
 });
 
 builder.Logging.ClearProviders();
@@ -49,7 +44,7 @@ builder.Logging.AddOpenTelemetry(builder =>
 {
     builder
     .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("AnimeQuoteApi"))
-    .AddConsoleExporter();
+    .AddOtlpExporter();
 });
 
 var app = builder.Build();

@@ -6,5 +6,5 @@ scrape_configs:
   - job_name: "AnimeQuoteApi"
     scrape_interval: 5s
     static_configs:
-      - targets: ["host.docker.internal:9464"]
+      - targets: ["host.docker.internal:8889"]
       
