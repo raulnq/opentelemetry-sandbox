@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opentelemetry-deployment
+  labels:
+    app: api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      serviceAccountName: opentelemetry-sa
+      containers:
+        - name: api-container
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+          image: 025381531841.dkr.ecr.us-east-2.amazonaws.com/opentelemetry-api:2.0
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+        - name: otel-container
+          image: amazon/aws-otel-collector:latest
+          env:
+            - name: AWS_REGION
+              value: us-east-2
+          imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 500m
+              memory: 500Mi
+            requests:
+              cpu: 250m
+              memory: 250Mi
+#kubectl apply -f deployment.yml --namespace=enrollments
+
+#kubectl delete -f deployment.yml --namespace=enrollments

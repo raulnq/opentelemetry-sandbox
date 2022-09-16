@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: opentelemetry-service
+  labels:
+    app: api
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: api
+
+#kubectl apply -f service.yml  --namespace=enrollments
+
+#kubectl delete -f service.yml --namespace=enrollments 

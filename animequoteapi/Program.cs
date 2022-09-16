@@ -20,6 +20,7 @@ builder.Services.AddHttpClient<QuoteClient>(client=>
 builder.Services.AddOpenTelemetryTracing(builder =>
 {
     builder
+    .AddXRayTraceId()
     .AddOtlpExporter()
     .AddSource("AnimeQuoteApi")
     .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("AnimeQuoteApi"))
