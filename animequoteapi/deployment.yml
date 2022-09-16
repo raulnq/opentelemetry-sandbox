@@ -20,7 +20,7 @@ spec:
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: Development
-          image: 025381531841.dkr.ecr.us-east-2.amazonaws.com/opentelemetry-api:2.0
+          image: [account-id].dkr.ecr.us-east-2.amazonaws.com/opentelemetry-api:2.0
           ports:
             - name: http
               containerPort: 80
@@ -38,6 +38,3 @@ spec:
             requests:
               cpu: 250m
               memory: 250Mi
-#kubectl apply -f deployment.yml --namespace=enrollments
-
-#kubectl delete -f deployment.yml --namespace=enrollments

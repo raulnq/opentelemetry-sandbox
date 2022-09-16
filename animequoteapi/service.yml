@@ -13,7 +13,3 @@ spec:
       name: http
   selector:
     app: api
-
-#kubectl apply -f service.yml  --namespace=enrollments
-
-#kubectl delete -f service.yml --namespace=enrollments 
